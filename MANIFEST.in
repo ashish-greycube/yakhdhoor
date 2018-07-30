@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include yakhdhoor *.css
+recursive-include yakhdhoor *.csv
+recursive-include yakhdhoor *.html
+recursive-include yakhdhoor *.ico
+recursive-include yakhdhoor *.js
+recursive-include yakhdhoor *.json
+recursive-include yakhdhoor *.md
+recursive-include yakhdhoor *.png
+recursive-include yakhdhoor *.py
+recursive-include yakhdhoor *.svg
+recursive-include yakhdhoor *.txt
+recursive-exclude yakhdhoor *.pyc
