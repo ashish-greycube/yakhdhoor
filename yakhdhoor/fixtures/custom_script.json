@@ -3,9 +3,9 @@
   "docstatus": 0, 
   "doctype": "Custom Script", 
   "dt": "Sales Invoice", 
-  "modified": "2018-07-31 00:52:37.718220", 
+  "modified": "2018-07-31 01:48:39.177254", 
   "name": "Sales Invoice-Client", 
-  "script": "frappe.ui.form.on('Sales Invoice', {\n    customer: function (frm) {\n        if (frm.doc.customer != null) {\n\t    frm.set_value('customer_branch', '')\t\n            var df = frappe.meta.get_docfield(\"Sales Invoice\",\"customer_branch\", frm.doc.name);\n            frappe.call({\n                method: \"yakhdhoor.yakhdhoor.api.get_customer_branch\",\n                args: {\n                    customer: frm.doc.customer\n                },\n                callback: function (r) {\n                    if (r.message) {\n                        var holder=[]\n                        r.message.forEach(function(element) {\n                            holder.push(element.customer_branch)\n                          });\n                        df.options = holder;\n                    }\n                }\n            })\n        }\n    }\n});", 
+  "script": "frappe.ui.form.on('Sales Invoice', {\n    customer: function (frm) {\n        var df = frappe.meta.get_docfield(\"Sales Invoice\", \"customer_branch\", frm.doc.name);\n        df.options = [];\n        if (frm.doc.customer != null) {\n            frappe.call({\n                method: \"yakhdhoor.yakhdhoor.api.get_customer_branch\",\n                args: {\n                    customer: frm.doc.customer\n                },\n                callback: function (r) {\n                    if (r.message) {\n                        var holder = []\n                        r.message.forEach(function (element) {\n                            holder.push(element.customer_branch)\n                        });\n                        df.options = holder;\n                    } else {\n                        df.options = [];\n                    }\n                }\n            })\n        }\n    }\n});", 
   "script_type": "Client"
  }
 ]
